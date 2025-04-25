@@ -44,7 +44,7 @@ class ChangePackCommitUpdateProcessor extends modObjectUpdateProcessor {
 
 		return parent::beforeSet();
 	}
-	
+
 	/**
      * {@inheritDoc}
      * @return mixed
@@ -55,8 +55,8 @@ class ChangePackCommitUpdateProcessor extends modObjectUpdateProcessor {
         if ($canSave !== true) {
             return $this->failure($canSave);
         }
-		
-		
+
+
         $this->object->fromArray($this->getProperties());
 
         /* Run the beforeSave method and allow stoppage */
@@ -67,7 +67,7 @@ class ChangePackCommitUpdateProcessor extends modObjectUpdateProcessor {
 		$data = $this->getProperties();
 		$filename = $this->object->filename;
 		$data = $this->updateJsonFile($data, $filename);
-		
+
         /* run object validation */
         if (!$this->object->validate()) {
             /** @var modValidator $validator */
@@ -84,8 +84,8 @@ class ChangePackCommitUpdateProcessor extends modObjectUpdateProcessor {
         if (!empty($preventSave)) {
             return $this->failure($preventSave);
         }
-		
-		
+
+
         if ($this->saveObject() == false) {
             return $this->failure($this->modx->lexicon($this->objectType.'_err_save'));
         }
@@ -95,7 +95,7 @@ class ChangePackCommitUpdateProcessor extends modObjectUpdateProcessor {
         return $this->cleanup();
     }
 	public function updateJsonFile($data, $filename) {
-		$dir = $this->modx->getOption('assets_path');
+		$dir = rtrim($this->modx->getOption('assets_path'),"/");
 		$attachment_path = $dir.'/'.'components/changepack/commit/';
 		$str = file_get_contents($attachment_path.$filename);
 		$temp = json_decode($str,true);

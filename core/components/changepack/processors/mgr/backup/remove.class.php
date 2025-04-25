@@ -36,9 +36,9 @@ class ChangePackBackupRemoveProcessor extends modObjectProcessor {
 		return $this->success();
 	}
 	public function delFile($filename){
-		$dir = $this->modx->getOption('assets_path');
+		$dir = rtrim($this->modx->getOption('assets_path'),"/");
 		$attachment_path = $dir.'/'.'components/changepack/backup/';
-		unlink($attachment_path.$filename); 
+		unlink($attachment_path.$filename);
 	}
 }
 

@@ -5,7 +5,7 @@ if (!defined('MODX_BASE_PATH')) {
 }
 
 /* define sources */
-$root = dirname(__FILE__,3) . '/';
+$root = dirname(__FILE__, 3) . '/';
 $sources = array(
 	'root' => $root,
 	'build' => $root . '_build/'. PKG_NAME_LOWER . '/',

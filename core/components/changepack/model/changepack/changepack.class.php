@@ -38,7 +38,7 @@ class ChangePack {
 		$this->modx->addPackage('changepack', $this->config['modelPath']);
 		$this->modx->lexicon->load('changepack:default');
 	}
-	
+
 	public function addChangePackLog($res, $class, $action){
 		$classname = 'ChangePackLog';
 		$last = true;
@@ -55,7 +55,7 @@ class ChangePack {
 			}
 		}
 		$userId = $this->modx->user->get('id');
-		
+
 		if($class === 'modResource') {
 			$name = $res->pagetitle;
 		}elseif($class === 'modTemplate'){
@@ -81,13 +81,13 @@ class ChangePack {
 		}
 	}
 	public function getDataFile($type_file, $id) {
-		$dir = $this->modx->getOption('assets_path');
+		$dir = rtrim($this->modx->getOption('assets_path'),"/");
 		$attachment_path = $dir.'/'.'components/changepack/backup/';
 		if($backup = $this->modx->getObject('ChangePackBackup', $id)){
 			$temp = $backup->toArray();
 			$filename = $temp[$type_file];
 			$data = file_get_contents($attachment_path.$filename);
-			if ($data === false) { 
+			if ($data === false) {
 				$this->log('error',$this->modx->lexicon('changepack.err.fileuploadfailed'));
 				return false;
 			}
@@ -101,29 +101,29 @@ class ChangePack {
         // Handle file uploads
         if (!empty($_FILES['json-file']['name']) && !empty($_FILES['json-file']['tmp_name'])) {
             $this->log('info',$this->modx->lexicon('changepack.log.fileuploadfound',array('filename' => $_FILES['json-file']['name'])));
-			$dir = $this->modx->getOption('assets_path');
+			$dir = rtrim($this->modx->getOption('assets_path'),"/");
 			$attachment_path = $dir.'/'.'components/changepack/backup/';
-			
+
 			$this->backup['file_commit'] = $_FILES['json-file']['name'];
 			if(!move_uploaded_file($_FILES['json-file']['tmp_name'], $attachment_path.'commit_'.$this->backup['file_commit'])){
 				$this->log('error',$this->modx->lexicon('changepack.err.filemovefailed'));
 				return false;
 			}
 			$data = file_get_contents($attachment_path.'commit_'.$this->backup['file_commit']);
-            if ($data === false) { 
+            if ($data === false) {
 				$this->log('error',$this->modx->lexicon('changepack.err.fileuploadfailed'));
 				return false;
 			}
 			$temp = json_decode($data,true);
 			$this->data = $temp;
-			
+
 			return true;
         }else{
 			$this->log('error',$this->modx->lexicon('changepack.err.filenotfailed'));
 		}
 		return false;
 	}
-	
+
 	public function applyCommit(){
 		$this->log('info',$this->modx->lexicon('changepack.log.applycommit'));
 		foreach($this->data['data'] as $change){
@@ -143,7 +143,7 @@ class ChangePack {
 						$res->fromArray($change['obj']);
 						if($res->save()){
 							$this->set_mod_id($log['mod_class'], $log['mod_id'], $res->id);
-							
+
 							$this->log('info',$this->modx->lexicon('changepack.log.objectnewsaved',array(
 								'class' => $log['mod_class'],
 								'id'=> $log['mod_id'],
@@ -188,7 +188,7 @@ class ChangePack {
 			}
 		}
 	}
-	
+
 	public function saveBackupTable(){
 		$this->log('info',$this->modx->lexicon('changepack.log.backupsavetable'));
 		$commit = $this->data['commit'];
@@ -213,7 +213,7 @@ class ChangePack {
 			}
 		}
 	}
-	
+
 	public function createBackupFile(){
 		$this->log('info',$this->modx->lexicon('changepack.log.backupfilecreate'));
 		$temp = array();
@@ -252,14 +252,14 @@ class ChangePack {
 		}
 		$commit['data'] = $temp;
 		$str = json_encode($commit, true);
-		$dir = $this->modx->getOption('assets_path');
+		$dir = rtrim($this->modx->getOption('assets_path'),"/");
 		$attachment_path = $dir.'/'.'components/changepack/backup/';
 		$fp = fopen($attachment_path . 'backup_'.$this->backup['file_commit'], 'w');
 		fputs($fp, $str);
 		fclose($fp);
 		return $backup;
 	}
-		
+
 	public function log ($type,$msg) {
         switch ($type) {
             case 'error':
@@ -283,5 +283,5 @@ class ChangePack {
 		$q = $this->modx->prepare($sql);
 		$q->execute();
 	}
-	
+
 }

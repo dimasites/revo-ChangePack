@@ -35,9 +35,9 @@ class ChangePackCommitRemoveProcessor extends modObjectProcessor {
 		return $this->success();
 	}
 	public function delFile($filename){
-		$dir = $this->modx->getOption('assets_path');
+		$dir = rtrim($this->modx->getOption('assets_path'),"/");
 		$attachment_path = $dir.'/'.'components/changepack/commit/';
-		unlink($attachment_path.$filename); 
+		unlink($attachment_path.$filename);
 	}
 }
 

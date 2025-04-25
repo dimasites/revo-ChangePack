@@ -35,18 +35,18 @@ class ChangePackCommitCreateProcessor extends modObjectCreateProcessor {
         if ($canSave !== true) {
             return $this->failure($canSave);
         }
-		
+
 
         /* run the before save logic */
         $canSave = $this->beforeSave();
         if ($canSave !== true) {
             return $this->failure($canSave);
         }
-		
+
 		$data = $this->getProperties();
-		
+
 		$data = $this->getJsonFile($data);
-		
+
         $this->object->fromArray($data);
 
         /* save element */
@@ -58,6 +58,7 @@ class ChangePackCommitCreateProcessor extends modObjectCreateProcessor {
         $this->logManagerAction();
         return $this->cleanup();
     }
+
 	public function setCommitId($id) {
 		$classKeyLog = 'ChangePackLog';
 		$logs = $this->modx->getIterator($classKeyLog, array('commit_id' => 0));
@@ -75,6 +76,7 @@ class ChangePackCommitCreateProcessor extends modObjectCreateProcessor {
 		$data['change_count'] = $this->modx->getCount($classKeyLog, $c);
 		$logs = $this->modx->getIterator($classKeyLog, $c);
 		unset($data['action']);
+
 		$file_name1 = str_replace(' ', '_', $data['name']);
 		$file_name2 = str_replace('/[^A-Za-z]+/', '_', $file_name1) . '_' . time();
 		$data['filename'] = $file_name2 . '.json';
@@ -93,11 +95,12 @@ class ChangePackCommitCreateProcessor extends modObjectCreateProcessor {
 		$commit['commit'] = $data;
 		$commit['data'] = $temp;
 		$str = json_encode($commit, true);
-		$dir = $this->modx->getOption('assets_path');
+		$dir = rtrim($this->modx->getOption('assets_path'),"/");//delete slash if exist
 		$attachment_path = $dir.'/'.'components/changepack/commit/';
-		$fp = fopen($attachment_path . $file_name2 . '.json', 'w');
+		$fp = fopen($attachment_path . $data['filename'], 'w');
 		fputs($fp, $str);
 		fclose($fp);
+
 		return $data;
 	}
 }

@@ -1,3 +1,3 @@
 <?php
-require_once (dirname(dirname(__FILE__)) . '/changepackcommit.class.php');
+require_once (dirname(__FILE__, 2) . '/changepackcommit.class.php');
 class ChangePackCommit_mysql extends ChangePackCommit {}

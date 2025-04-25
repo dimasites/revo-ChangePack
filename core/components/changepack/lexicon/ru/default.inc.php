@@ -5,12 +5,12 @@ $_lang['changepack'] = 'ChangePack';
 $_lang['changepack_menu_desc'] = 'Упаковка и перенос изменных элементов и ресурсов.';
 
 $_lang['changepack_commit'] = 'Коммиты и лог изменений';
-$_lang['changepack_backup'] = 'Применение коммитов и беккап';
+$_lang['changepack_backup'] = 'Применение коммитов и бэкап';
 
-$_lang['changepack_commit_msg'] = 'Таблица коммитов (фиксаций изменений).';
-$_lang['changepack_log_msg'] = 'Таблица логов';
+$_lang['changepack_commit_msg'] = 'Таблица коммитов (фиксаций изменений)';
+$_lang['changepack_log_msg'] = 'Таблица логов - изменения в БД сайта записаны здесь';
 
-$_lang['changepack_intro_msg'] = 'Вы можете выделять сразу несколько предметов при помощи Shift или Ctrl.';
+$_lang['changepack_intro_msg'] = 'Вы можете выделять сразу несколько изменений в логе при помощи Shift или Ctrl';
 
 $_lang['changepack_grid_user'] = 'Пользователь';
 
@@ -29,10 +29,10 @@ $_lang['changepack_log_remove'] = 'Удалить лог';
 $_lang['changepack_logs_remove_confirm'] = 'Вы уверены, что хотите удалить эти логи?';
 $_lang['changepack_log_remove_confirm'] = 'Вы уверены, что хотите удалить этот лог?';
 
-$_lang['changepack_logs_enable'] = 'Включить логи';
-$_lang['changepack_log_enable'] = 'Включить лог';
-$_lang['changepack_logs_disable'] = 'Отключить логи';
-$_lang['changepack_log_disable'] = 'Отключить лог';
+$_lang['changepack_logs_enable'] = 'Включить выбранные в коммит';
+$_lang['changepack_log_enable'] = 'Включить в коммит';
+$_lang['changepack_logs_disable'] = 'Исключить выбранные из коммита';
+$_lang['changepack_log_disable'] = 'Исключить запись лога из коммита';
 
 $_lang['changepack_log_err_nf'] = 'Лог не найден.';
 $_lang['changepack_log_err_ns'] = 'Лог не указан.';
@@ -66,20 +66,20 @@ $_lang['changepack_log_err__nf'] = 'Лог не найден.';
 $_lang['changepack_backup_file_commit'] = 'Файл коммита';
 $_lang['changepack_backup_file_backup'] = 'Файл востановления';
 
-$_lang['changepack_backups_remove'] = 'Удалить беккапы';
-$_lang['changepack_backup_remove'] = 'Удалить беккап';
-$_lang['changepack_backups_remove_confirm'] = 'Вы уверены, что хотите удалить эти беккапы?';
-$_lang['changepack_backup_remove_confirm'] = 'Вы уверены, что хотите удалить этот беккап?';
-$_lang['changepack_backup_update'] = 'Изменить беккап';
-$_lang['changepack_backup_err_ae'] = 'Беккап с таким именем уже существует.';
+$_lang['changepack_backups_remove'] = 'Удалить бэкапы';
+$_lang['changepack_backup_remove'] = 'Удалить бэкап';
+$_lang['changepack_backups_remove_confirm'] = 'Вы уверены, что хотите удалить эти бэкапы?';
+$_lang['changepack_backup_remove_confirm'] = 'Вы уверены, что хотите удалить этот бэкап?';
+$_lang['changepack_backup_update'] = 'Изменить бэкап';
+$_lang['changepack_backup_err_ae'] = 'Бэкап с таким именем уже существует.';
 
 $_lang['changepack_backup_commitapply'] = 'Применить коммит';
-$_lang['changepack_backup_backupapply'] = 'Востановить из беккапа';
+$_lang['changepack_backup_backupapply'] = 'Востановить из бэкапа';
 
-$_lang['changepack_backup_err_name'] = 'Вы должны указать имя беккапа.';
-$_lang['changepack_backup_err_ae'] = 'Беккап с таким именем уже существует.';
-$_lang['changepack_backup_err_ns'] = 'Беккап не указан.';
-$_lang['changepack_backup_err_nf'] = 'Беккап не найден.';
+$_lang['changepack_backup_err_name'] = 'Вы должны указать имя бэкапа.';
+$_lang['changepack_backup_err_ae'] = 'Бэкап с таким именем уже существует.';
+$_lang['changepack_backup_err_ns'] = 'Бэкап не указан.';
+$_lang['changepack_backup_err_nf'] = 'Бэкап не найден.';
 
 $_lang['changepack_backup_create'] = 'Загрузить коммит';
 
@@ -95,10 +95,10 @@ $_lang['changepack.tab.input.desc'] = 'Загрузите json файл комм
 $_lang['changepack.jsonfile'] = 'Загрузить файл json';
 $_lang['changepack.importfailure'] = 'К сожалению, возникла ошиба при импорте.';
 
-$_lang['changepack.log.backupfilecreate'] = 'Создаем файл беккапа.';
+$_lang['changepack.log.backupfilecreate'] = 'Создаем файл бэкапа.';
 $_lang['changepack.log.backupsavetable'] = 'Сохраняем данные в базу.';
-$_lang['changepack.log.commitnotapplybackup'] = 'Коммит не применен. Ошибка при создании беккапа. Примените коммит из таблици беккапов.';
-$_lang['changepack.log.backupsaved'] = 'Беккап сохранен.';
+$_lang['changepack.log.commitnotapplybackup'] = 'Коммит не применен. Ошибка при создании бэкапа. Примените коммит из таблици бэкапов.';
+$_lang['changepack.log.backupsaved'] = 'Бэкап сохранен.';
 
 $_lang['changepack.log.applycommit'] = 'Применение коммита.';
 
